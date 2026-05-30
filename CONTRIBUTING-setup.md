@@ -65,4 +65,4 @@ git add -A && git commit -m "刊出家人投稿：…" && git push
 
 目前為手動審核。投稿欄位（name / relationship / type / message / photo / file）已對齊
 日後 Supabase 資料表，升級時把表單目的地改成 Supabase（狀態 `pending`）並加上站長審核頁即可，
-無需重做欄位或版面。詳見 `docs/superpowers/specs/2026-05-31-family-contributions-design.md`。
+無需重做欄位或版面。
