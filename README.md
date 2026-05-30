@@ -2,7 +2,9 @@
 
 為外婆**鄭木清**（1926–2024）建立的個人傳記網站，記錄她橫跨印尼、中國、澳門三地的一生。
 
-🔗 **網站**：https://furic.github.io/grandma-zheng/
+🔗 **網站**：
+- https://grandma-zheng.netlify.app
+- https://furic.github.io/grandma-zheng/
 
 ## 內容
 - 生平時間軸
