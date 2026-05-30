@@ -5,14 +5,18 @@
 
 ## 一次性設定（在 Netlify 後台）
 
-表單會在下次部署時被 Netlify 自動偵測（表單名稱：`contribution`）。設定通知信：
+> ⚠️ **重要：新版 Netlify 帳號預設「關閉」表單偵測。** 若未開啟，送出表單會回 404。
+
+**順序很重要：先開啟偵測，再重新部署。**
 
 1. 登入 Netlify → 選擇 `grandma-zheng` 網站。
-2. **Forms** → 確認出現名為 **contribution** 的表單（首次需等一次部署完成）。
-3. **Forms → Settings and notifications → Form notifications → Add notification → Email notification**。
-4. 收件人填 **fur@richardfu.net**，儲存。
+2. **Site configuration → Forms → Form detection → Enable**（開啟表單偵測）。
+3. **重新部署一次**：**Deploys → Trigger deploy → Deploy site**（或 push 任何一個 commit）。
+   - 偵測只對「開啟之後」的部署生效，所以這一步不能省。
+4. 部署完成後，**Forms** 分頁會出現名為 **contribution** 的表單。
+5. 設定通知信：**Forms → Settings and notifications → Form notifications → Add notification → Email notification**，收件人填 **fur@richardfu.net**，儲存。
 
-> 若 Forms 頁面看不到表單：到 **Site configuration → Forms** 確認 *Form detection* 已開啟，然後重新部署一次（push 任何修改即可）。
+設定完成後，到網站底部送出一筆測試投稿，確認 Forms 收到、通知信寄達。
 
 ## 投稿欄位
 
