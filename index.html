@@ -324,6 +324,101 @@
     #lightbox-prev { left: 16px; }
     #lightbox-next { right: 16px; }
 
+    /* ── CONTRIBUTE ── */
+    .share-intro {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: var(--brown);
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+    #contribute-form { max-width: 640px; }
+    .field { display: block; margin-bottom: 20px; }
+    .field > span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .field input[type=text],
+    .field textarea,
+    .field input[type=file] {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--darkbrown);
+      background: var(--light);
+      border: 1px solid rgba(160,120,64,0.35);
+      border-radius: 4px;
+      padding: 10px 12px;
+      line-height: 1.6;
+    }
+    .field textarea { resize: vertical; }
+    .field input:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(160,120,64,0.15);
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+    .type-options { display: flex; flex-wrap: wrap; gap: 16px; }
+    .type-options label {
+      font-size: 0.9rem;
+      color: var(--brown);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .type-options input { accent-color: var(--gold); }
+    .share-btn {
+      font-family: inherit;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      color: var(--cream);
+      background: var(--brown);
+      border: none;
+      border-radius: 4px;
+      padding: 12px 36px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .share-btn:hover { background: var(--darkbrown); }
+    .share-btn:disabled { opacity: 0.5; cursor: default; }
+    .share-status {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      padding: 14px 18px;
+      border-radius: 4px;
+    }
+    .share-status.ok  { background: rgba(160,120,64,0.12); color: var(--brown); border-left: 3px solid var(--warm); }
+    .share-status.err { background: rgba(139,69,19,0.1); color: var(--rust); border-left: 3px solid var(--rust); }
+    .hidden-field { position: absolute; left: -9999px; }
+    [data-show-for] { display: none; }
+    [data-show-for].show { display: block; }
+
+    /* lightbox suggest-caption link */
+    #lightbox-suggest {
+      margin-top: 12px;
+      color: var(--warm);
+      font-family: inherit;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      background: none;
+      border: 1px solid rgba(200,169,126,0.5);
+      border-radius: 4px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #lightbox-suggest:hover { background: rgba(200,169,126,0.15); color: #fff; }
+
     /* ── FOOTER ── */
     footer {
       background: var(--darkbrown);
@@ -543,12 +638,92 @@
   </div>
 </section>
 
+<!-- TESTIMONIES (親友的話) — 經核准的家人投稿。
+     有第一則時：移除下方 <section> 的 style="display:none"，
+     並依註解格式把每則加進 #testimonies-list。 -->
+<section id="testimonies" style="display:none">
+  <div class="container">
+    <div class="section-label">親友的話</div>
+    <h2 class="section-title">來自家人的回憶與思念</h2>
+    <div id="testimonies-list">
+      <!-- 核准一則投稿後，複製下面區塊並填入內容：
+      <div class="memory">
+        <p class="memory-text">這裡是回憶內容……</p>
+        <p class="memory-author">姓名（與外婆的關係）</p>
+      </div>
+      -->
+    </div>
+  </div>
+</section>
+
 <!-- GALLERY -->
 <section>
   <div class="container">
     <div class="section-label">相冊</div>
     <h2 class="section-title">影像裡的歲月</h2>
     <div id="gallery-root"></div>
+  </div>
+</section>
+
+<!-- CONTRIBUTE (分享您的回憶) -->
+<section id="share">
+  <div class="container">
+    <div class="section-label">參與</div>
+    <h2 class="section-title">分享您的回憶</h2>
+    <p class="share-intro">
+      如果您也有關於外婆的回憶、想補充某張相片的故事，或想分享珍藏的相片，歡迎在此留下。<br>
+      經家人確認後，將刊登於此網站。🌸
+    </p>
+
+    <form name="contribution" method="POST" data-netlify="true"
+          netlify-honeypot="bot-field" enctype="multipart/form-data" id="contribute-form">
+      <input type="hidden" name="form-name" value="contribution">
+      <p class="hidden-field" aria-hidden="true">
+        <label>請勿填寫此欄：<input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <div class="field-row">
+        <label class="field">
+          <span>稱呼 / 姓名 *</span>
+          <input type="text" name="name" required>
+        </label>
+        <label class="field">
+          <span>與外婆的關係</span>
+          <input type="text" name="relationship" placeholder="例：孫女、外甥、朋友">
+        </label>
+      </div>
+
+      <div class="field">
+        <span>我想…</span>
+        <div class="type-options">
+          <label><input type="radio" name="type" value="回憶留言" checked> 寫下回憶／留言</label>
+          <label><input type="radio" name="type" value="相片說明"> 建議相片說明</label>
+          <label><input type="radio" name="type" value="上傳相片"> 上傳相片</label>
+        </div>
+      </div>
+
+      <label class="field" data-show-for="相片說明">
+        <span>相片編號</span>
+        <input type="text" name="photo" placeholder="例：54.jpg">
+      </label>
+
+      <label class="field" data-show-for="上傳相片">
+        <span>年代提示（選填）</span>
+        <input type="text" name="era_hint" placeholder="例：約 1985 年，澳門">
+      </label>
+      <label class="field" data-show-for="上傳相片">
+        <span>選擇相片（請小於 8MB）</span>
+        <input type="file" name="file" accept="image/*">
+      </label>
+
+      <label class="field">
+        <span class="msg-label">您的回憶 *</span>
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <button type="submit" class="share-btn">送出</button>
+      <div id="share-status" class="share-status" hidden></div>
+    </form>
   </div>
 </section>
 
@@ -567,6 +742,7 @@
   <button id="lightbox-prev">&#8249;</button>
   <img id="lightbox-img" src="" alt="">
   <div id="lightbox-caption"></div>
+  <button id="lightbox-suggest" type="button">📝 建議說明</button>
   <button id="lightbox-next">&#8250;</button>
 </div>
 
@@ -738,6 +914,72 @@
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft') showPrev();
+  });
+
+  // ── Contribution form ──
+  const cForm = document.getElementById('contribute-form');
+  const cStatus = document.getElementById('share-status');
+  const msgLabel = cForm.querySelector('.msg-label');
+  const condFields = cForm.querySelectorAll('[data-show-for]');
+  const msgLabels = {
+    '回憶留言': '您的回憶 *',
+    '相片說明': '建議的相片說明 *',
+    '上傳相片': '相片描述 *'
+  };
+
+  function updateFormType() {
+    const type = cForm.querySelector('input[name="type"]:checked').value;
+    condFields.forEach(el => {
+      el.classList.toggle('show', el.getAttribute('data-show-for') === type);
+    });
+    msgLabel.textContent = msgLabels[type] || '訊息 *';
+  }
+  cForm.querySelectorAll('input[name="type"]').forEach(r =>
+    r.addEventListener('change', updateFormType));
+  updateFormType();
+
+  // Lightbox → "建議說明": prefill the form with the current photo
+  document.getElementById('lightbox-suggest').addEventListener('click', () => {
+    const file = allPhotos[current][0];
+    closeLightbox();
+    const radio = cForm.querySelector('input[name="type"][value="相片說明"]');
+    radio.checked = true;
+    updateFormType();
+    cForm.querySelector('input[name="photo"]').value = file;
+    document.getElementById('share').scrollIntoView({ behavior: 'smooth' });
+    cForm.querySelector('textarea[name="message"]').focus({ preventScroll: true });
+  });
+
+  // AJAX submit (so family stays on the page). Falls back to a normal POST if JS fails.
+  const fileInput = cForm.querySelector('input[name="file"]');
+  const MAX_FILE = 8 * 1024 * 1024; // 8MB
+  cForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    cStatus.hidden = false;
+
+    if (fileInput.files.length && fileInput.files[0].size > MAX_FILE) {
+      cStatus.className = 'share-status err';
+      cStatus.textContent = '相片檔案太大（請小於 8MB）。可先縮小尺寸再上傳，或改用「建議相片說明」告訴我們。';
+      return;
+    }
+
+    const btn = cForm.querySelector('.share-btn');
+    btn.disabled = true;
+    cStatus.className = 'share-status';
+    cStatus.textContent = '傳送中…';
+
+    try {
+      const res = await fetch('/', { method: 'POST', body: new FormData(cForm) });
+      if (!res.ok) throw new Error('status ' + res.status);
+      cForm.reset();
+      updateFormType();
+      cStatus.className = 'share-status ok';
+      cStatus.textContent = '謝謝您 🌸 我們已收到，待家人確認後刊出。';
+    } catch (err) {
+      cStatus.className = 'share-status err';
+      cStatus.textContent = '送出時出了點問題，請稍後再試一次。';
+      btn.disabled = false;
+    }
   });
 </script>
 
