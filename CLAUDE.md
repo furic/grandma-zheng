@@ -36,13 +36,4 @@ Grandma/
 - 點擊相片可放大（Lightbox，鍵盤左右鍵翻頁）
 
 ## 待辦
-- [ ] 補充外婆的確實生卒年份
-- [ ] 補充部分相片的旋轉修正（仍有部分未修正）
 - [ ] 補充更多相片說明文字
-- [ ] 部署至 GitHub Pages
-
-## 部署至 GitHub Pages
-1. 建立 public repository（例如 `grandma`）
-2. 上傳整個文件夾內容（`index.html` + `Photos/`）
-3. Settings → Pages → Source: `main` branch, `/ (root)` → Save
-4. 網址：`https://用戶名.github.io/grandma`
